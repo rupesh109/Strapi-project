@@ -1,3 +1,20 @@
+HEAD
+# 🚀 Getting started with Strapi
+=======
+ HEAD
+# ✅ Contribution Rules
+>>>>>>> 5e91552 (Test pipeline build)
+
+Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+
+### `develop`
+
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+
+Head
+4. **Need Help?**  
+   - For any issues or questions, feel free to reach out on Teams.
+=======
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
@@ -6,6 +23,7 @@ Strapi comes with a full featured [Command Line Interface](https://docs.strapi.i
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
+ 5e91552 (Test pipeline build)
 ```
 npm run develop
 # or
@@ -59,3 +77,7 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+ HEAD
+
+527e120 (Initial commit from Strapi)
+ 5e91552 (Test pipeline build)
