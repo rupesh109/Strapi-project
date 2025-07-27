@@ -4,7 +4,7 @@
   "containerDefinitions": [
     {
       "name": "strapi",
-      "image": "<IMAGE_URI>",
+      "image": "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest",
       "essential": true,
       "portMappings": [
         {
