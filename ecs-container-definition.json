@@ -1,0 +1,29 @@
+{
+  "family": "strapi-task-rupesh",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "strapi",
+      "image": "<IMAGE_URI>",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 1337,
+          "hostPort": 1337
+        }
+      ],
+      "environment": [
+        { "name": "APP_KEYS", "value": "your_app_keys" },
+        { "name": "API_TOKEN_SALT", "value": "your_token_salt" },
+        { "name": "ADMIN_JWT_SECRET", "value": "your_admin_jwt" },
+        { "name": "TRANSFER_TOKEN_SALT", "value": "your_transfer_salt" },
+        { "name": "ENCRYPTION_KEY", "value": "your_encryption_key" },
+        { "name": "JWT_SECRET", "value": "your_jwt_secret" }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/ecsTaskExecutionRole"
+}
