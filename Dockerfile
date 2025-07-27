@@ -1,4 +1,3 @@
-# Dockerfile
 FROM node:20
 
 WORKDIR /app
@@ -8,6 +7,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm build
+
 EXPOSE 1337
 
-CMD ["npm", "run", "develop"]
+CMD ["npm", "start"]
