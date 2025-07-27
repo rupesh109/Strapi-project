@@ -13,13 +13,22 @@
         }
       ],
       "environment": [
-        { "name": "APP_KEYS", "value": "your_app_keys" },
-        { "name": "API_TOKEN_SALT", "value": "your_token_salt" },
-        { "name": "ADMIN_JWT_SECRET", "value": "your_admin_jwt" },
-        { "name": "TRANSFER_TOKEN_SALT", "value": "your_transfer_salt" },
-        { "name": "ENCRYPTION_KEY", "value": "your_encryption_key" },
-        { "name": "JWT_SECRET", "value": "your_jwt_secret" }
-      ]
+  { "name": "APP_KEYS", "value": "abc123,xyz456" },
+  { "name": "API_TOKEN_SALT", "value": "salt_api_123" },
+  { "name": "ADMIN_JWT_SECRET", "value": "admin_jwt_secret_456" },
+  { "name": "TRANSFER_TOKEN_SALT", "value": "transfer_salt_789" },
+  { "name": "ENCRYPTION_KEY", "value": "encryption_key_abc" },
+  { "name": "JWT_SECRET", "value": "jwt_secret_token_xyz" }
+],
+
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/strapi-logs",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
   "requiresCompatibilities": ["FARGATE"],
