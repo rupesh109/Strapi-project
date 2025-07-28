@@ -33,7 +33,7 @@ jobs:
 
       - name: Fill in the new image ID in the ECS task definition
         run: |
-          sed -i "s|<IMAGE_URI>|${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest|g" ecs-container-definition.json
+          sed -i "s|<IMAGE_URI>|${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest|g" cleaned-strapi/ecs-container-definition.json
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
