@@ -1,38 +1,13 @@
-{
-  "family": "strapi-task-rupesh",
-  "networkMode": "awsvpc",
-  "containerDefinitions": [
-    {
-      "name": "strapi",
-      "image": "<IMAGE_URI>",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 1337,
-          "hostPort": 1337
-        }
-      ],
-      "environment": [
-  { "name": "APP_KEYS", "value": "abc123,xyz456" },
-  { "name": "API_TOKEN_SALT", "value": "salt_api_123" },
-  { "name": "ADMIN_JWT_SECRET", "value": "admin_jwt_secret_456" },
-  { "name": "TRANSFER_TOKEN_SALT", "value": "transfer_salt_789" },
-  { "name": "ENCRYPTION_KEY", "value": "encryption_key_abc" },
-  { "name": "JWT_SECRET", "value": "jwt_secret_token_xyz" }
-],
-
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/strapi-logs",
-          "awslogs-region": "us-east-2",
-          "awslogs-stream-prefix": "ecs"
-        }
+[
+  {
+    "name": "strapi",
+    "image": "607700977843.dkr.ecr.us-east-2.amazonaws.com/strapi-repo-rupesh:latest",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 1337,
+        "hostPort": 1337
       }
-    }
-  ],
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "512",
-  "memory": "1024",
-  "executionRoleArn": "arn:aws:iam::607700977843:role/ecsTaskExecutionRole-strapi1"
-}
+    ]
+  }
+]
