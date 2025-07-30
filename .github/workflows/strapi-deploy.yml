@@ -1,34 +1,50 @@
-name: CI/CD for Strapi to ECR
+name: Deploy to Amazon ECS
 
 on:
   push:
     branches:
-      - main
+      - rupesh
 
 jobs:
   deploy:
+    name: Deploy Strapi to ECS
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build Docker image
-        run: docker build -t rupesh-strapi-app .
+      # TEMPORARY SKIP: Docker build and push (since local Docker or secrets are not available)
+      - name: Skip Docker image build and push
+        run: echo "⏭️ Docker build skipped. Using existing image in ECR."
 
-      - name: Tag Docker image
-        run: docker tag rupesh-strapi-app:latest 565748443817.dkr.ecr.us-east-2.amazonaws.com/rupesh-strapi-app:latest
+      - name: Register new ECS task definition
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          TASK_DEFINITION_FAMILY: ${{ secrets.TASK_DEFINITION_FAMILY }}
+        run: |
+          aws ecs register-task-definition \
+            --family $TASK_DEFINITION_FAMILY \
+            --network-mode awsvpc \
+            --requires-compatibilities FARGATE \
+            --cpu 512 --memory 1024 \
+            --execution-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/ecsTaskExecutionRole-strapi1 \
+            --container-definitions "$(cat ecs-container-definition.json)"
 
-      - name: Push Docker image
-        run: docker push 565748443817.dkr.ecr.us-east-2.amazonaws.com/rupesh-strapi-app:latest
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
+            --service ${{ secrets.ECS_SERVICE_NAME }} \
+            --force-new-deployment
