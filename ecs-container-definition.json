@@ -1,5 +1,5 @@
 {
-  "family": "strapi-task-family",
+  "family": "strapi-task-rupesh",
   "networkMode": "awsvpc",
   "executionRoleArn": "arn:aws:iam::607700977843:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -13,7 +13,15 @@
           "hostPort": 1337,
           "protocol": "tcp"
         }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/strapi-logs",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
   "requiresCompatibilities": ["FARGATE"],
