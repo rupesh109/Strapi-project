@@ -1,13 +1,22 @@
-[
-  {
-    "name": "strapi",
-    "image": "607700977843.dkr.ecr.us-east-2.amazonaws.com/strapi-repo-rupesh:latest",
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 1337,
-        "hostPort": 1337
-      }
-    ]
-  }
-]
+{
+  "family": "strapi-task-family",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::607700977843:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "strapi",
+      "image": "<IMAGE_URI>",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 1337,
+          "hostPort": 1337,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
